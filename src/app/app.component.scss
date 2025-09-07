@@ -1,0 +1,44 @@
+:host {
+  display: flex;
+}
+
+.app-layout {
+  min-height: 100vh;
+}
+
+.top-nav {
+  line-height: 64px;
+}
+
+.logo {
+  float: left;
+  height: 64px;
+  padding-right: 24px;
+  line-height: 64px;
+  background: #001529;
+}
+
+.logo img {
+  display: inline-block;
+  height: 32px;
+  width: 123px;
+  vertical-align: middle;
+}
+
+nz-content {
+  padding: 24px 50px;
+
+  @media (width <= 768px) {
+    padding: 12px 24px;
+  }
+}
+
+.inner-content {
+  padding: 24px;
+  background: #fff;
+  height: 100%;
+
+  @media (width <= 768px) {
+    padding: 12px;
+  }
+}
