@@ -1,1 +1,30 @@
-<p>article works!</p>
+<article class="article">
+    <header>
+        <h3>{{ article().title }}</h3>
+    </header>
+    <div class="article__body">
+        <div class="article__body--image">
+            @if (article().image) {
+            <img
+                [ngSrc]="article().image"
+                alt="Article image"
+                fill
+            />
+            } @else {
+            <div>No image available</div>
+            }
+        </div>
+        <details class="article__body--details">
+            <summary>{{ article().description }}</summary>
+            <p>
+                {{ article().content }}
+            </p>
+        </details>
+    </div>
+    <footer class="article__footer">
+        Published on {{ article().publishedAt | date : 'medium' }} by {{
+        article().source.name }}.
+        <a href="{{ article().url }}" target="_blank" rel="noopener"
+        >Read more</a>
+    </footer>
+</article>

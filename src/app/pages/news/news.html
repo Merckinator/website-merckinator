@@ -1,1 +1,5 @@
-<p>news works!</p>
+<div class="news">
+    @for(article of articles(); track $index) {
+    <merck-article [article]="article"></merck-article>
+    }
+</div>
