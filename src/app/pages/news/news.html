@@ -1,5 +1,12 @@
-<div class="news">
-    @for(article of articles(); track $index) {
-    <merck-article [article]="article"></merck-article>
-    }
-</div>
+<h1>Latest News</h1>
+
+@if (!gNews.loading()) {
+    <div class="news">
+        @for(article of articles(); track $index) {
+            <merck-article [article]="article"></merck-article>
+        } 
+    </div>
+} @else {
+    <p-progress-spinner ariaLabel="loading" />
+    <p>Loading news articles...</p>
+}
