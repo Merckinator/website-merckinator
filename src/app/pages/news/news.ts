@@ -3,10 +3,11 @@ import { Gnews } from './services/gnews';
 import { GNewsArticle } from './types/g-news-article';
 import { tap } from 'rxjs';
 import { Article } from './article/article';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @Component({
     selector: 'merck-news',
-    imports: [Article],
+    imports: [Article, ProgressSpinnerModule],
     providers: [Gnews],
     templateUrl: './news.html',
     styleUrl: './news.scss',
@@ -14,7 +15,7 @@ import { Article } from './article/article';
 export class News implements OnInit {
     articles = signal<GNewsArticle[]>([]);
 
-    private gNews = inject(Gnews);
+    gNews = inject(Gnews);
 
     ngOnInit(): void {
         this.gNews

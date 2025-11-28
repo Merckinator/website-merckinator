@@ -3,3 +3,7 @@
     flex-wrap: wrap;
     gap: 1rem;
 }
+
+p-progress-spinner::before {
+    display: none;
+}
