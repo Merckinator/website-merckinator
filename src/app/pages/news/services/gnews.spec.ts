@@ -1,3 +1,4 @@
+import { provideHttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 
 import { Gnews } from './gnews';
@@ -6,7 +7,9 @@ describe('Gnews', () => {
   let service: Gnews;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [provideHttpClient(), Gnews],
+    });
     service = TestBed.inject(Gnews);
   });
 

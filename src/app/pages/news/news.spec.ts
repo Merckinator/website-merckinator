@@ -1,6 +1,9 @@
+import { HttpClient } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { News } from './news';
+import { Gnews } from './services/gnews';
 
 describe('News', () => {
   let component: News;
@@ -8,13 +11,12 @@ describe('News', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [News]
-    })
-    .compileComponents();
+      imports: [News],
+      providers: [provideHttpClient(), Gnews],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(News);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
