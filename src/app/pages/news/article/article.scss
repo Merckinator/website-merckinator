@@ -1,5 +1,11 @@
 .article {
-    max-width: min(100vw, 600px);
+    flex: 1 1 280px;
+    max-width: none;
+    width: 100%;
+
+    @media (min-width: 576px) {
+        flex: 1 1 300px;
+    }
 }
 
 .article__body {

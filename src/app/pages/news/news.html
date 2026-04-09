@@ -2,11 +2,13 @@
 
 @if (!gNews.loading()) {
     <div class="news">
-        @for(article of articles(); track $index) {
+        @for (article of articles(); track $index) {
             <merck-article [article]="article"></merck-article>
-        } 
+        }
     </div>
 } @else {
-    <p-progress-spinner ariaLabel="loading" />
-    <p>Loading news articles...</p>
+    <div class="loading-container">
+        <p-progress-spinner ariaLabel="loading" style="width: 100px; height: 100px" />
+        <p class="loading-text">Loading news articles...</p>
+    </div>
 }

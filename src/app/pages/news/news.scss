@@ -1,9 +1,35 @@
 .news {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem 0;
+
+    @media (min-width: 576px) {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.75rem;
+    }
+
+    @media (min-width: 992px) {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 1200px;
+        margin: 0 auto;
+    }
 }
 
-p-progress-spinner::before {
-    display: none;
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+    gap: 1rem;
+
+    ::ng-deep .p-progress-spinner {
+        stroke-width: 3;
+    }
+}
+
+.loading-text {
+    font-size: 1.25rem;
+    color: var(--text-color-secondary);
 }
