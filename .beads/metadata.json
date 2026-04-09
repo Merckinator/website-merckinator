@@ -1,0 +1,7 @@
+{
+  "database": "dolt",
+  "backend": "dolt",
+  "dolt_mode": "embedded",
+  "dolt_database": "website_merckinator",
+  "project_id": "71ce05e6-b8bd-4377-96b4-9daed234af12"
+}
