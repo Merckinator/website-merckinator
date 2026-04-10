@@ -4,6 +4,10 @@
 
 An Angular SSR (Server-Side Rendering) project that fetches and displays news articles using the GNews API. The API is proxied through Railway to handle free-tier limitations.
 
+## Task Tracking
+
+**All agents MUST use Beads (`bd`) for task tracking.** Do not use markdown TODO lists, comments, or other task management systems. See the Beads Issue Tracker section below for details.
+
 ## Tech Stack
 
 - **Framework**: Angular 20.3 with SSR (@angular/ssr)
