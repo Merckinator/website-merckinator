@@ -10,7 +10,9 @@
     "start:dev": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
     "serve:ssr:website-merckinator": "node dist/website-merckinator/server/server.mjs"
   },
   "prettier": {
@@ -45,18 +47,16 @@
     "zone.js": "^0.15.1"
   },
   "devDependencies": {
+    "@analogjs/vite-plugin-angular": "^2.4.4",
+    "@analogjs/vitest-angular": "^2.4.4",
     "@angular/build": "^21.2.7",
     "@angular/cli": "^21.2.7",
     "@angular/compiler-cli": "^21.2.8",
     "@types/express": "^5.0.1",
-    "@types/jasmine": "~5.1.0",
     "@types/node": "^20.17.19",
-    "jasmine-core": "~5.9.0",
-    "karma": "~6.4.0",
-    "karma-chrome-launcher": "~3.2.0",
-    "karma-coverage": "~2.2.0",
-    "karma-jasmine": "~5.1.0",
-    "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~5.9.2"
+    "@vitest/coverage-v8": "^4.1.4",
+    "jsdom": "^29.0.2",
+    "typescript": "~5.9.2",
+    "vitest": "^4.1.4"
   }
 }
