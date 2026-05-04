@@ -30,6 +30,7 @@ describe('Article', () => {
 
     fixture = TestBed.createComponent(Article);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('article', mockArticle);
     fixture.detectChanges();
   });
 

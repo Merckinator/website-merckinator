@@ -5,7 +5,7 @@ import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { routes } from './app.routes';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { providePrimeNG } from 'primeng/config';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import Aura from '@primeuix/themes/aura';
@@ -14,7 +14,7 @@ registerLocaleData(en);
 
 export const appConfig: ApplicationConfig = {
     providers: [
-        provideHttpClient(),
+        provideHttpClient(withFetch()),
         provideBrowserGlobalErrorListeners(),
         provideRouter(routes),
         provideClientHydration(withEventReplay()),

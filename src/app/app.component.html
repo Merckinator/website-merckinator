@@ -1,14 +1,18 @@
-<header class="container-fluid">
-  <nav>
-    <ul>
-      <li><strong>Merckinator.com</strong></li>
-    </ul>
-    <ul>
-      <li><a class="contrast" routerLink="/">Home</a></li>
-      <li><a routerLink="/news">News</a></li>
+<header class="site-header">
+  <nav class="site-nav">
+    <a routerLink="/" class="logo" aria-label="Merckinator.com home">
+      <svg class="logo-mark" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect width="32" height="32" rx="8" fill="currentColor" class="logo-mark-bg"/>
+        <path d="M9 22V10L16 18L23 10V22" stroke="var(--bg-surface)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="logo-wordmark">merckinator</span>
+    </a>
+    <ul class="nav-links">
+      <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+      <li><a routerLink="/news" routerLinkActive="active">News</a></li>
     </ul>
   </nav>
 </header>
-<main class="container">
+<main>
   <router-outlet></router-outlet>
 </main>

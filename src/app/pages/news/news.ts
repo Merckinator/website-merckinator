@@ -1,4 +1,5 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Gnews } from './services/gnews';
 import { GNewsArticle } from './types/g-news-article';
 import { tap } from 'rxjs';
@@ -14,20 +15,29 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 })
 export class News implements OnInit {
     articles = signal<GNewsArticle[]>([]);
+    error = signal<string | null>(null);
 
     gNews = inject(Gnews);
+    private destroyRef = inject(DestroyRef);
 
     ngOnInit(): void {
+        this.loadNews();
+    }
+
+    loadNews(): void {
+        this.error.set(null);
         this.gNews
             .getTopHeadlines()
-            .pipe(tap((response) => console.debug('The GNews response was:', response)))
+            .pipe(takeUntilDestroyed(this.destroyRef))
             .subscribe({
                 next: (response) => this.articles.set(response.articles),
-                error: (error) =>
+                error: (error) => {
                     console.error(
                         'There was an error fetching the Top Headlines from GNews',
                         error
-                    ),
+                    );
+                    this.error.set('Failed to load news. Please try again.');
+                },
             });
     }
 }

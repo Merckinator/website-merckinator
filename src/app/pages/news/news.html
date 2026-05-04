@@ -1,14 +1,38 @@
-<h1>Latest News</h1>
+<div class="news-header">
+    <h1 class="news-title">Latest News</h1>
+    <p class="news-subtitle">Curated headlines from around the world</p>
+</div>
 
-@if (!gNews.loading()) {
-    <div class="news">
+@if (error()) {
+    <div class="state-card error-card">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="8" x2="12" y2="12" />
+            <line x1="12" y1="16" x2="12.01" y2="16" />
+        </svg>
+        <p>{{ error() }}</p>
+        <button type="button" class="btn-retry" (click)="loadNews()">Try again</button>
+    </div>
+} @else if (!gNews.loading() && articles().length > 0) {
+    <div class="news-grid">
         @for (article of articles(); track $index) {
-            <merck-article [article]="article"></merck-article>
+            <merck-article [article]="article" [style.--animation-delay]="($index * 60) + 'ms'"></merck-article>
         }
     </div>
 } @else {
     <div class="loading-container">
-        <p-progress-spinner ariaLabel="loading" style="width: 100px; height: 100px" />
-        <p class="loading-text">Loading news articles...</p>
+        <div class="loading-shimmer">
+            @for (i of [1, 2, 3, 4, 5, 6]; track i) {
+                <div class="skeleton-card">
+                    <div class="skeleton-image"></div>
+                    <div class="skeleton-content">
+                        <div class="skeleton-line skeleton-title"></div>
+                        <div class="skeleton-line skeleton-meta"></div>
+                        <div class="skeleton-line"></div>
+                        <div class="skeleton-line skeleton-short"></div>
+                    </div>
+                </div>
+            }
+        </div>
     </div>
 }
