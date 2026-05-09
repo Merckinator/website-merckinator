@@ -1,33 +1,29 @@
 # WebsiteMerckinator
 
-- Angular SSR project currently hosted in Railway.
+An Angular SSR application that displays top news headlines from the GNews API. A custom Railway function wraps the free-tier GNews API to serve news data. Hosted on Railway.
 
-- Created a little function in Railway to wrap the free-tier of GNews API.
+## Technologies
+
+- Angular 21 (with Server-Side Rendering)
+- PrimeNG UI component library
+- RxJS
+- TypeScript
+- Express (SSR server)
+- Railway (hosting)
+- GNews API
 
 ## Development server
 
-To start a local development server, run:
+Run `npm run start:dev` (or `ng serve`) for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-```bash
-ng serve
-```
+## Build
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Run `npm run build` (or `ng build`) to build the project. The build artifacts will be stored in the `dist/` directory. The production build is the default.
 
-## Building
+## Production server
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+After building, start the SSR server with `npm start`.
 
 ## Running unit tests
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
+Run `npm test` to execute the unit tests via Vitest. Use `npm run test:watch` for watch mode, or `npm run test:coverage` for a coverage report.
