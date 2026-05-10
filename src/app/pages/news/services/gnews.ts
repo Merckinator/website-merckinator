@@ -14,10 +14,13 @@ export class Gnews {
     private _loading = signal(false);
     loading = this._loading.asReadonly();
 
-    getTopHeadlines(page: number = 1) {
+    getTopHeadlines(page: number = 1, query?: string) {
         return defer(() => {
             this._loading.set(true);
-            const params = new HttpParams().set('page', page.toString());
+            let params = new HttpParams().set('page', page.toString());
+            if (query?.trim()) {
+                params = params.set('q', query.trim());
+            }
             return this.http.get<GNewsResponse>(G_NEWS_TOP_HEADLINES_URL, { params });
         }).pipe(
             tap({
