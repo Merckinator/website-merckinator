@@ -3,7 +3,7 @@
     <p class="news-subtitle">Curated headlines from around the world</p>
 </div>
 
-@if (error()) {
+@if (error() && articles().length === 0) {
     <div class="state-card error-card">
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <circle cx="12" cy="12" r="10" />
@@ -13,13 +13,35 @@
         <p>{{ error() }}</p>
         <button type="button" class="btn-retry" (click)="loadNews()">Try again</button>
     </div>
-} @else if (!gNews.loading() && articles().length > 0) {
+} @else if (articles().length > 0) {
     <div class="news-grid">
         @for (article of articles(); track $index) {
             <merck-article [article]="article" [style.--animation-delay]="($index * 60) + 'ms'"></merck-article>
         }
     </div>
-} @else {
+
+    @if (hasMore()) {
+        <div class="load-more-container">
+            <button 
+                type="button" 
+                class="btn-load-more" 
+                (click)="loadMore()" 
+                [disabled]="gNews.loading()"
+            >
+                @if (gNews.loading()) {
+                    <p-progressSpinner [style]="{ width: '18px', height: '18px' }" strokeWidth="8" />
+                    Loading...
+                } @else {
+                    Load More Stories
+                }
+            </button>
+        </div>
+    } @else {
+        <div class="end-of-content">
+            <p>You've reached the end of the news feed.</p>
+        </div>
+    }
+} @else if (gNews.loading()) {
     <div class="loading-container">
         <div class="loading-shimmer">
             @for (i of [1, 2, 3, 4, 5, 6]; track i) {

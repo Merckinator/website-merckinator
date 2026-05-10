@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { defer } from 'rxjs';
 import { GNewsResponse } from '../types/g-news-response';
@@ -14,10 +14,11 @@ export class Gnews {
     private _loading = signal(false);
     loading = this._loading.asReadonly();
 
-    getTopHeadlines() {
+    getTopHeadlines(page: number = 1) {
         return defer(() => {
             this._loading.set(true);
-            return this.http.get<GNewsResponse>(G_NEWS_TOP_HEADLINES_URL);
+            const params = new HttpParams().set('page', page.toString());
+            return this.http.get<GNewsResponse>(G_NEWS_TOP_HEADLINES_URL, { params });
         }).pipe(
             tap({
                 finalize: () => this._loading.set(false),
