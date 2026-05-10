@@ -73,9 +73,8 @@ export class News implements OnInit {
         const q = this.route.snapshot.queryParamMap.get('q');
         if (q) {
             this.searchQuery.set(q);
-        } else {
-            this.loadNews(1);
         }
+        this.loadNews(1);
     }
 
     loadNews(page: number = 1): void {
