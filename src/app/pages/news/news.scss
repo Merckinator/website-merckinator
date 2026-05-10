@@ -254,3 +254,42 @@
     letter-spacing: 0.1em;
     opacity: 0.6;
 }
+
+.scroll-top-btn {
+    position: fixed;
+    right: var(--space-lg);
+    bottom: var(--space-lg);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    box-shadow: var(--shadow-lg);
+    transition: all var(--transition-fast);
+    animation: fadeIn 300ms ease forwards;
+
+    &:hover {
+        background: var(--accent-hover);
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-xl);
+    }
+
+    &:active {
+        transform: translateY(-2px);
+    }
+
+    svg {
+        transition: transform var(--transition-fast);
+    }
+
+    &:hover svg {
+        transform: translateY(-2px);
+    }
+}

@@ -6,9 +6,11 @@ import {
     OnInit,
     signal,
 } from '@angular/core';
+import { PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
-import { debounceTime, distinctUntilChanged, skip } from 'rxjs';
+import { debounceTime, distinctUntilChanged, skip, fromEvent } from 'rxjs';
 import { Gnews } from './services/gnews';
 import { GNewsArticle } from './types/g-news-article';
 import { Article } from './article/article';
@@ -35,6 +37,9 @@ export class News implements OnInit {
     private destroyRef = inject(DestroyRef);
     private router = inject(Router);
     private route = inject(ActivatedRoute);
+    private platformId = inject(PLATFORM_ID);
+
+    showScrollTop = signal(false);
 
     constructor() {
         toObservable(this.searchQuery)
@@ -53,6 +58,15 @@ export class News implements OnInit {
                 });
                 this.loadNews(1);
             });
+
+        if (isPlatformBrowser(this.platformId)) {
+            fromEvent(window, 'scroll')
+                .pipe(takeUntilDestroyed(this.destroyRef))
+                .subscribe(() => {
+                    const scrollPosition = window.scrollY;
+                    this.showScrollTop.set(scrollPosition > 300);
+                });
+        }
     }
 
     ngOnInit(): void {
@@ -100,6 +114,13 @@ export class News implements OnInit {
 
     clearSearch(): void {
         this.searchQuery.set('');
+    }
+
+    scrollToTop(): void {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
     }
 
     onSearchInput(event: Event): void {
