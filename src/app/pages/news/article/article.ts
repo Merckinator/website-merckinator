@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, ChangeDetectionStrategy } from '@angular/core';
 import { GNewsArticle } from '../types/g-news-article';
 import { DatePipe, NgOptimizedImage } from '@angular/common';
 
@@ -8,6 +8,7 @@ import { DatePipe, NgOptimizedImage } from '@angular/common';
     templateUrl: './article.html',
     styleUrl: './article.scss',
     host: { ngSkipHydration: 'true' },
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Article {
     article = input.required<GNewsArticle>();

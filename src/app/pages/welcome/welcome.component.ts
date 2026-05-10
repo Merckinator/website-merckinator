@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -6,5 +6,6 @@ import { RouterModule } from '@angular/router';
   imports: [RouterModule],
   templateUrl: './welcome.component.html',
   styleUrl: './welcome.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WelcomeComponent {}

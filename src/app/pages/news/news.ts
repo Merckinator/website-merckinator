@@ -5,6 +5,7 @@ import {
     inject,
     OnInit,
     signal,
+    ChangeDetectionStrategy,
 } from '@angular/core';
 import { PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
@@ -22,6 +23,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     providers: [Gnews],
     templateUrl: './news.html',
     styleUrl: './news.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class News implements OnInit {
     articles = signal<GNewsArticle[]>([]);
