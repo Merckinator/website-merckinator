@@ -1,0 +1,22 @@
+{
+  "services": {
+    "frontend": {
+      "build": {
+        "builder": "NIX_BUILDER",
+        "dockerfile": "Dockerfile"
+      },
+      "env": {
+        "NODE_ENV": "production"
+      }
+    },
+    "weather-proxy": {
+      "build": {
+        "builder": "NIX_BUILDER",
+        "dockerfile": "weather-proxy/Dockerfile"
+      },
+      "env": {
+        "WEATHER_API_KEY": "${{WEATHER_API_KEY}}"
+      }
+    }
+  }
+}
