@@ -12,6 +12,10 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/news/news').then((m) => m.News),
     },
     {
+        path: 'weather',
+        loadComponent: () => import('./pages/weather/weather').then((m) => m.Weather),
+    },
+    {
         path: '**',
         redirectTo: '',
     },

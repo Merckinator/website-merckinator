@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, finalize } from 'rxjs';
 
 export interface WeatherData {
@@ -36,14 +36,14 @@ export class WeatherService {
   private _loading = signal(false);
   loading = this._loading.asReadonly();
 
-  // Replace with your actual Railway proxy URL once deployed
-  private readonly API_URL = '/api/weather'; 
+  private readonly API_URL = 'https://weather-proxy.up.railway.app/weather'; 
 
   constructor(private http: HttpClient) {}
 
   getWeather(query: string): Observable<WeatherData> {
     this._loading.set(true);
-    return this.http.get<WeatherData>(`${this.API_URL}?q=${query}`).pipe(
+    const params = new HttpParams().set('q', query);
+    return this.http.get<WeatherData>(this.API_URL, { params }).pipe(
       finalize(() => this._loading.set(false))
     );
   }
